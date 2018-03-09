@@ -1,6 +1,6 @@
 import React from 'react';
-
-export default () => {
+import Authentication from './hocs/requireAuth';
+let Resources = () => {
   return (
     <div>
       Super Secret Recipe
@@ -12,3 +12,4 @@ export default () => {
     </div>
   )
 }
+export default Authentication(Resources);

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { authenticate } from '../actions/index';
 
 const styles = {
   link: {
@@ -10,9 +12,15 @@ const styles = {
 
 }
 
-export default class Header extends Component {
+class Header extends Component {
   authButton() {
-    return <button className="btn btn-primary">Sign In</button>
+    const onClick = () => this.props.authenticate(!this.props.isAuthenticated);
+
+    if (this.props.isAuthenticated) {
+      return <button className="btn btn-primary" onClick={onClick}>Sign Out</button>
+    }
+
+    return <button className="btn btn-primary" onClick={onClick}>Sign In</button>
   }
   render() {
     return (
@@ -25,10 +33,26 @@ export default class Header extends Component {
             <Link style={styles.link} to="/resources">Resources</Link>
           </li>
           <li className="nav-item">
-            <Link style={styles.link}to="/auth">{this.authButton()}</Link>
+            {this.authButton()}
           </li>
         </ul>
       </nav>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.authenticated
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    authenticate: (isLoggedIn) => {
+      dispatch(authenticate(isLoggedIn));
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
