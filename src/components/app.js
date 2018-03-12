@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 import UserList from './UserList';
 import SignIn from './auth/SignIn';
 import SignOut from './auth/SignOut';
+import SignUp from './auth/SignUp';
 
 export default class App extends Component {
   render() {
@@ -16,6 +17,7 @@ export default class App extends Component {
           <Route path='/users' component={UserList} />
           <Route path='/signin' component={SignIn} />
           <Route path='/signout' component={SignOut} />
+          <Route path='/signup' component={SignUp} />
         </Switch>
       </div>
     );
