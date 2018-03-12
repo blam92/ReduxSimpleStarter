@@ -1,4 +1,4 @@
-import { CHANGE_AUTH, FETCH_USERS, AUTH_USER, AUTH_ERROR } from './types';
+import { CHANGE_AUTH, FETCH_USERS, AUTH_USER, AUTH_ERROR, UNAUTH_USER } from './types';
 import axios from 'axios';
 
 const API_URL = 'http://localhost:3090';
@@ -30,5 +30,12 @@ export function authError(error) {
   return {
     type: AUTH_ERROR,
     payload: error
+  }
+}
+
+export function signOutUser() {
+  localStorage.removeItem('JWT');
+  return {
+   type: UNAUTH_USER 
   }
 }
