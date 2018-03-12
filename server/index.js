@@ -5,9 +5,9 @@ const app = express();
 const port = process.env.PORT || 3090;
 const router = require('./router');
 const mongoose = require('mongoose');
-
+const cors = require('cors');
 mongoose.connect('mongodb://localhost/auth').catch((err) => console.log('mongoose err', err));
-
+app.use(cors());
 app.use(morgan('combined'));
 app.use(express.json());
 app.use('/', router);

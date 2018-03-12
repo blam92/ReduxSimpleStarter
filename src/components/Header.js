@@ -36,7 +36,8 @@ class Header extends Component {
             <Link style={styles.link} to="/resources">Resources</Link>
           </li>
           <li className="nav-item">
-            {this.authButton()}
+            <Link style={styles.link} to="/signin">Sign In</Link>
+            {/* {this.authButton()} */}
           </li>
         </ul>
       </nav>

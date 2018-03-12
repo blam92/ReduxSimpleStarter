@@ -6,8 +6,8 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './components/app';
 import reducers from './reducers';
 import Async from './middlewares/async';
-
-const createStoreWithMiddleware = applyMiddleware(Async)(createStore);
+import reduxThunk from 'redux-thunk';
+const createStoreWithMiddleware = applyMiddleware(Async, reduxThunk)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>

@@ -9,7 +9,7 @@ export default (ComposedComponent) => {
         return <ComposedComponent {...this.props} />
       }
 
-      return (<Redirect to='/signin'/>);
+      return (<Redirect to='/signin' push/>);
     }
   }
 

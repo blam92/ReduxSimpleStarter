@@ -9,7 +9,7 @@ const requireSignIn = passport.authenticate('local', { session: false });
 router.post('/signup', authController.signup);
 router.post('/signin', requireSignIn, authController.signin);
 router.get('/', requireAuth, (req, res) => {
-  res.send({ hi: 'there' });
+  res.send({ message: 'Message, code: AKASDKNGK((&&(' });
 });
 
 module.exports = router;
