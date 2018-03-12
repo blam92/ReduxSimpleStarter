@@ -1,14 +1,7 @@
-import { CHANGE_AUTH, FETCH_USERS, AUTH_USER } from './types';
+import { CHANGE_AUTH, FETCH_USERS, AUTH_USER, AUTH_ERROR } from './types';
 import axios from 'axios';
 
 const API_URL = 'http://localhost:3090';
-
-export function authenticate(isLoggedIn) {
-  return {
-    type: CHANGE_AUTH,
-    payload: isLoggedIn
-  }
-}
 
 export function fetchUsers() {
   const request = axios.get('https://jsonplaceholder.typicode.com/users');
@@ -28,7 +21,14 @@ export function signInUser({ email, password }, history) {
         history.push('/users');
       })
       .catch((err) => {
-
+        dispatch(authError('Bad Login Info'));
       });
+  }
+}
+
+export function authError(error) {
+  return {
+    type: AUTH_ERROR,
+    payload: error
   }
 }

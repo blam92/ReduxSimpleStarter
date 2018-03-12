@@ -15,7 +15,7 @@ export default (ComposedComponent) => {
 
   let mapStateToProps = (state) => {
     return {
-      authenticated: state.authenticated
+      authenticated: state.auth.authenticated
     }
   }
 

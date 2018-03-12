@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 
 class SignIn extends Component {
 
-  renderInput(field) {
-    return (
-      <div>
-        <input {...field.input} type={field.type}/> 
-        { field.meta.touched && field.meta.error && <span>{ field.meta.error }</span>}
+  renderAlert() {
+      return (
+      this.props.errorMessage && 
+      <div className="alert alert-danger">
+        <strong>Oops!</strong> {this.props.errorMessage}
       </div>
       );
   }
@@ -24,18 +24,29 @@ class SignIn extends Component {
       <form action="" onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
         <fieldset className="form-group">
           <label>Email:</label>
-          <Field name="email" component={this.renderInput.bind(this)} type="email"/>
+          <div>
+            <Field name="email" component='input' type="email" />
+          </div>
         </fieldset>
         <fieldset className="form-group">
           <label>Password:</label>
-          <Field name="password" component={this.renderInput.bind(this)} type="password"/>
+          <div>
+            <Field name="password" component='input' type="password"/>
+          </div>
         </fieldset>
+        {this.renderAlert()}
         <button action="submit" className="btn btn-primary">Sign In</button>
       </form>
     );
   }
 }
 
+let mapStateToProps = (state) => {
+  return {
+    errorMessage: state.auth.error
+  }
+}
+
 export default reduxForm({
   form: 'signin',
-})(connect(null, actions)(SignIn));
+})(connect(mapStateToProps, actions)(SignIn));
