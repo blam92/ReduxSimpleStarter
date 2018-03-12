@@ -6,6 +6,7 @@ import UserList from './UserList';
 import SignIn from './auth/SignIn';
 import SignOut from './auth/SignOut';
 import SignUp from './auth/SignUp';
+import Welcome from './Welcome';
 
 export default class App extends Component {
   render() {
@@ -13,6 +14,7 @@ export default class App extends Component {
       <div>
         <Header/>
         <Switch>
+          <Route exact path='/' component={Welcome} />
           <Route path='/resources' component={Resources}/>
           <Route path='/users' component={UserList} />
           <Route path='/signin' component={SignIn} />
