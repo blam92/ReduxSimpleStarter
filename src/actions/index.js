@@ -26,6 +26,22 @@ export function signInUser({ email, password }, history) {
   }
 }
 
+export function signUpUser({ email, password }, history) {
+  console.log('EMAIL AND PASSWD ACTIONS', email, password);
+  return (dispatch) => {
+    axios.post(`${API_URL}/signup`, { email, password })
+      .then((res) => {
+        dispatch({ type: AUTH_USER })
+        console.log('res', res);
+        localStorage.setItem('JWT', res.data.token);
+        history.push('/users');
+      })
+      .catch((err) => {
+        dispatch(authError('Bad Login Info'));
+      });
+  }
+}
+
 export function authError(error) {
   return {
     type: AUTH_ERROR,

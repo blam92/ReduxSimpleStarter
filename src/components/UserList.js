@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUsers } from '../actions/index';
+import Authentication from './hocs/requireAuth';
 
 const styles = {
   cards: {
@@ -49,4 +50,4 @@ let mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserList);
+export default connect(mapStateToProps, mapDispatchToProps)(Authentication(UserList));

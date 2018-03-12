@@ -10,8 +10,9 @@ const tokenForUser = (user) => {
 module.exports.signup = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
+  console.log('Email and passwd', email, password);
   if(!email || !password) {
-    return res.status(422).send({err: 'Must provide email or password'});
+    return res.status(422).send({err: 'Must provide email and password'});
   }
 
   User.findOne({ email: email }, (err, existingUser) => {
