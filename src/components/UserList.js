@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchUsers } from '../actions/index';
+import { fetchUsers, fetchMessage } from '../actions/index';
 import Authentication from './hocs/requireAuth';
 
 const styles = {
@@ -14,6 +14,7 @@ class UserList extends Component {
 
   componentWillMount() {
     this.props.fetchUsers();
+    this.props.fetchMessage();
   }
 
   renderUser(user, idx) {
@@ -46,7 +47,8 @@ let mapDispatchToProps = (dispatch) => {
   return {
     fetchUsers: () => {
       dispatch(fetchUsers());
-    }
+    },
+    fetchMessage
   }
 }
 

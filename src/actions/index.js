@@ -56,3 +56,13 @@ export function signOutUser() {
    type: UNAUTH_USER 
   }
 }
+
+export function fetchMessage(dispatch) {
+  const request = axios.get(API_URL, {
+    headers: { authorization: localStorage.getItem('JWT') }
+  });
+  return {
+    type: 'AUTH_API_REQUEST',
+    payload: request
+  }
+}
