@@ -1,6 +1,6 @@
 # Project
 Review of the following topics:
-- Frontend: React High Order Functions, Redux, Redux middleware.
+- Frontend: React High Order Functions, Redux, Redux middleware, React Router.
 - Backend: Node, ExpressJS, Passport, Bcrypt, JWT Authentication, MongoDB using Mongoose
 
 ### Getting Started
