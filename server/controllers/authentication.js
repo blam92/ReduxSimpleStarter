@@ -19,7 +19,7 @@ module.exports.signup = (req, res, next) => {
     if(err) return err;
 
     if(existingUser) {
-      return res.status(422).send({err: 'email is in use'});
+      return res.status(422).send({err: 'Email is in use'});
     }
 
     const user = new User({

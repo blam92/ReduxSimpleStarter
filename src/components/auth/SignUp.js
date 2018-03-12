@@ -31,7 +31,12 @@ class SignUp extends Component {
   }
 
   renderAlert() {
-
+    return (
+      this.props.errorMessage &&
+      <div className="alert alert-danger">
+        <strong>Oops!</strong> {this.props.errorMessage}
+      </div>
+    );
   }
 
   renderField({input, label, type, meta: { touched, error }}) {
@@ -75,7 +80,12 @@ class SignUp extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    errorMessage: state.auth.error
+  }
+}
 export default reduxForm({
   form: 'signup',
   validate
-})(connect(null, { signUpUser })(SignUp));
+})(connect(mapStateToProps, { signUpUser })(SignUp));

@@ -37,7 +37,8 @@ export function signUpUser({ email, password }, history) {
         history.push('/users');
       })
       .catch((err) => {
-        dispatch(authError('Bad Login Info'));
+        console.log('error in response', err.response);
+        dispatch(authError(err.response.data.err));
       });
   }
 }
