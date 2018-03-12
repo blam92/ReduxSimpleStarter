@@ -13,14 +13,17 @@ const styles = {
 }
 
 class Header extends Component {
-  authButton() {
+  authLinks() {
     const onClick = () => this.props.authenticate(!this.props.isAuthenticated);
 
     if (this.props.isAuthenticated) {
-      return <button className="btn btn-primary" onClick={onClick}>Sign Out</button>
+      return <Link style={styles.link} to="/signout">Sign Out</Link>
     }
 
-    return <button className="btn btn-primary" onClick={onClick}>Sign In</button>
+    return [
+    <Link key="0" style={styles.link} to="/signin">Sign In</Link>,
+    <Link key="1" style={styles.link} to="/signup">Sign Up</Link>
+    ]
   }
   render() {
     return (
@@ -36,8 +39,7 @@ class Header extends Component {
             <Link style={styles.link} to="/resources">Resources</Link>
           </li>
           <li className="nav-item">
-            <Link style={styles.link} to="/signin">Sign In</Link>
-            {/* {this.authButton()} */}
+            {this.authLinks()}
           </li>
         </ul>
       </nav>
@@ -47,7 +49,7 @@ class Header extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    isAuthenticated: state.authenticated
+    isAuthenticated: state.auth.authenticated
   }
 }
 
